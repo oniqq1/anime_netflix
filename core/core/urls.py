@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(pattern_name='steins_gate_page', permanent=False)),
     path("", include("mainpage.urls")),
+    path("users/", include("users.urls"))
 ]
