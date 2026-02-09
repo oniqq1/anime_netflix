@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from .forms import RegisterModel , LoginForm
 from django.contrib.auth import login , logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -53,3 +54,19 @@ def login_view(request):
     return render(request, 'users/login.html', {"form": form})
     #ну там тоже форма для логина и кнопка для отправки POST запроса на login_view
     # и место для отображения ошибок в шаблоне логина
+
+@login_required
+def profile_view(request):
+    #эта страница должна быть доступна только для авторизованных пользователей
+    #на ней должно отображаться имя пользователя , email и аватарка
+    #ну и там может быть кнопка для выхода из аккаунта , которая будет отправлять POST запрос на logout_view
+
+    user = request.user
+    return render(request, 'users/profile.html', {"user": user})
+
+
+
+
+
+
+

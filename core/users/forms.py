@@ -42,6 +42,10 @@ class RegisterModel(ModelForm):
         email = self.cleaned_data.get('email')
         if not email.endswith(end=['@gmail.com',"@yahoo.com","@example.com"]):
             raise forms.ValidationError("Email must be from the domains '@gmail.com' , '@yahoo.com' or '@example.com'")
+
+        if email in User.objects.values_list('email', flat=True):
+            raise forms.ValidationError("Email is already in use")
+
         return email
 
     #сохранение пользователя с хешированием пароля
