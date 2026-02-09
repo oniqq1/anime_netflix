@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Steins Gate 0{% endblock %}
+
+{% block content %}
+
+<div class="max-w-[80rem] mx-auto mb-24 mt-4">
+
+  <div class="flex gap-6 bg-zinc-800/80 rounded-xl p-6">
+
+    <div class="w-[450px] aspect-[2/3] flex-shrink-0 rounded-lg overflow-hidden bg-zinc-700 flex items-center justify-center">
+      <img src="{% static 'img/poster_2.jpg' %}" alt="poster" class="w-full h-full object-contain">
+    </div>
+
+    <div class="flex flex-col overflow-hidden">
+      <h2 class="text-4xl font-bold mt-1 truncate">Steins;Gate 0</h2>
+      <div class="h-px w-full bg-zinc-600/60 my-3 mb-6 mt-6"></div>
+        <b>Сезон:</b> 2018 весна<br/>
+        <b>Тип:</b> ТВ (24 эп.), 25 мин.<br/>
+        <b>Жанры:</b> Триллер, Фантастика<br/>
+      <div class="h-px w-full bg-zinc-600/60 my-3 mb-6 mt-6"></div>
+      <p class="text-zinc-300 text-lg leading-relaxed overflow-hidden line-clamp-6 ">
+        Альтернативная концовка Врат Штейна
+        в которой эгоцентричный безумный ученый Окабе Ринтаро изо всех сил старается оправиться от неудачной попытки спасти жизнь Курису Макисе.
+        Стараясь забыть прошлое, Окабе отказывается от своего альтер-эго. И когда, казалось бы, всё наладилось, он снова сталкивается со своим прошлым.
+        Он знакомится с девушкой, которая представилась знакомой Курису.
+        От неё Окабе узнает, что в данный момент проходит испытание устройства, которое способно воссоздавать характер и личность человека по воспоминаниям.
+        Начиная тестирование он и не предполагал, что воссоздание Курису принесет столько мучений и новых неожиданных последствий...
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div class="relative w-[1280px] mx-auto mb-2 select-none">
+
+  <div id="player-indicator" class="absolute top-0 left-0 w-1/2 h-full bg-red-600 rounded-t-lg transition-transform duration-300 ease-out"></div>
+
+  <div class="relative flex text-center text-lg font-medium">
+    <button id="btn-main" class="w-1/2 py-3 z-10">Плеер 1</button>
+    <button id="btn-backup" class="w-1/2 py-3 z-10">Плеер 2</button>
+  </div>
+
+</div>
+
+<div class="flex justify-center items-center">
+  <div id="player-main" class="player active">
+    <iframe src="https://www.anilibria.tv/public/iframe.php?id=6140" width="1280" height="720" allowfullscreen=""></iframe>
+  </div>
+
+  <div id="player-backup" class="player">
+    <iframe src="//kodik.info/serial/10115/68d9f5d02225e165c1e650faecfaa3d8/720p?translations=false" width="1280" height="720" allowfullscreen=""></iframe>
+  </div>
+</div>
+
+{% endblock %}

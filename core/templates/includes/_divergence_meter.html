@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/divergence.css' %}">
+
+<!-- data-атрибуты содержат URL-адреса для Django -->
+<div class="nixie-container" id="divergence-meter"
+     data-sg="{% url 'steins_gate_page' %}"
+     data-sg0="{% url 'steins_gate_zero_page' %}">
+    <div class="nixie-digit">0</div>
+    <div class="nixie-dot">.</div>
+    <div class="nixie-digit">0</div>
+    <div class="nixie-digit">0</div>
+    <div class="nixie-digit">0</div>
+    <div class="nixie-digit">0</div>
+    <div class="nixie-digit">0</div>
+    <div class="nixie-digit">0</div>
+</div>
+
+<script src="{% static 'js/divergence.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const meter = new DivergenceMeter('divergence-meter');
+        const container = document.getElementById('divergence-meter');
+
+        const urlSG = container.dataset.sg;
+        const urlSG0 = container.dataset.sg0;
+        const currentPath = window.location.pathname;
+
+        // Определяем финальное число для текущей страницы
+        const targetLine = currentPath.includes('zero') ? "1.048596" : "0.337187";
+
+        // Анимация ТОЛЬКО ПРИ ЗАГРУЗКЕ СТРАНИЦЫ (длится ровно 1000мс)
+        meter.animate(targetLine, 1000);
+
+        // Обработчик КЛИКА: Мгновенный переход без анимации
+        container.addEventListener('click', () => {
+            const isAlpha = !currentPath.includes('zero');
+            const nextUrl = isAlpha ? urlSG0 : urlSG;
+
+            // Сразу же переходим на другую страницу
+            window.location.href = nextUrl;
+        });
+    });
+</script>

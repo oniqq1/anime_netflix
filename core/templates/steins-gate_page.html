@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Steins Gate{% endblock %}
+
+{% block content %}
+
+<div class="max-w-[80rem] mx-auto mb-24 mt-4">
+
+  <div class="flex gap-6 bg-zinc-800/80 rounded-xl p-6">
+
+    <div class="w-[450px] aspect-[2/3] flex-shrink-0 rounded-lg overflow-hidden bg-zinc-700 flex items-center justify-center">
+      <img src="{% static 'img/poster_1.jpg' %}" alt="poster" class="w-full h-full object-contain">
+    </div>
+
+    <div class="flex flex-col overflow-hidden">
+      <h2 class="text-4xl font-bold mt-1 truncate">Steins;Gate</h2>
+      <div class="h-px w-full bg-zinc-600/60 my-3 mb-6 mt-6"></div>
+        <b>Сезон:</b> 2011 весна<br/>
+        <b>Тип:</b> ТВ (25 эп.), 25 мин.<br/>
+        <b>Жанры:</b> Триллер, Фантастика<br/>
+      <div class="h-px w-full bg-zinc-600/60 my-3 mb-6 mt-6"></div>
+      <p class="text-zinc-300 text-lg leading-relaxed overflow-hidden line-clamp-6">
+        В Вратах Штейна рассказывается о группе молодых студентов-технарей.
+        Студенты находят способ менять прошлое по почте с помощью модифицированной микроволновки и начинают опыты с целью узнать,
+        насколько далеко сможет зайти их открытие, но в итоге все начинает выходить из-под контроля,
+        и студенты впутываются в заговор вокруг SERN — организации, стоящей за Большим адронным коллайдером — и Джона Титора,
+        утверждающего, что он явился из антиутопичного будущего.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div class="relative w-[1280px] mx-auto mb-2 select-none">
+
+  <div id="player-indicator" class="absolute top-0 left-0 w-1/2 h-full bg-red-600 rounded-t-lg transition-transform duration-300 ease-out"></div>
+
+  <div class="relative flex text-center text-lg font-medium">
+    <button id="btn-main" class="w-1/2 py-3 z-10">Плеер 1</button>
+    <button id="btn-backup" class="w-1/2 py-3 z-10">Плеер 2</button>
+  </div>
+
+</div>
+
+<div class="flex justify-center items-center">
+  <div id="player-main" class="player active">
+    <iframe src="https://www.anilibria.tv/public/iframe.php?id=8674" width="1280" height="720" allowfullscreen=""></iframe>
+  </div>
+
+  <div id="player-backup" class="player">
+    <iframe src="//aniqit.com/serial/27423/9bc813cf9293f1305ce036b03845618a/720p?translations=false" width="1280" height="720" allowfullscreen=""></iframe>
+  </div>
+</div>
+
+{% endblock %}
