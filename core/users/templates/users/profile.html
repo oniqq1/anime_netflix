@@ -19,11 +19,13 @@
             <p class="text-zinc-400">{{ user.email }}</p>
         </div>
 
+
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit"
                     class="bg-red-600 text-white px-10 py-4 rounded-xl text-lg font-semibold transition hover:opacity-80">
-                Logout
+            <!--Сейчас всё ещё logout, но надо сделать, ибо выход на главной странице смотрится хуево. Сделаем там, где будет смена авы-->
+                Settings
             </button>
         </form>
 

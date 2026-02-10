@@ -17,8 +17,15 @@
     <header class="bg-zinc-900 text-white py-4 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
             {% include "includes/_divergence_meter.html" %}
         <a href="http://127.0.0.1:8000/steins-gate/" class="absolute left-1/2 -translate-x-1/2 text-center text-4xl"><b>Future Gadget Laboratory</b></a>
-        <a href="{% url 'register' %}" class="ml-auto hover:scale-105 transition-transform">
-        <img src="{% static 'img/register_bin.png' %}" alt="Registration" class="h-20 w-auto hover:scale-110 transition duration-200"></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}" class="ml-auto hover:scale-105 transition-transform">
+                <img src="{% static 'img/register_bin.png' %}" alt="Profile" class="h-20 w-auto hover:scale-110 transition duration-200">
+            </a>
+        {% else %}
+            <a href="{% url 'register' %}" class="ml-auto hover:scale-105 transition-transform">
+                <img src="{% static 'img/register_bin.png' %}" alt="Registration" class="h-20 w-auto hover:scale-110 transition duration-200">
+            </a>
+        {% endif %}
     </header>
 
     <main class="pt-24">

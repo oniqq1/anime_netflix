@@ -1,40 +1,52 @@
+from django.contrib.auth.password_validation import validate_password
+from django.forms.models import ModelForm
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.password_validation import validate_password
-from django.forms import ModelForm
+
 
 
 class RegisterModel(ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
+    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'confirm_password']
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        allowed_domains = ('@gmail.com', '@yahoo.com', '@example.com')
-        if not email.endswith(allowed_domains):
-            raise forms.ValidationError(
-                "Email must be from '@gmail.com', '@yahoo.com' or '@example.com'"
-            )
-        return email
+        fields = ['username', 'email', 'password' , "confirm_password"]
 
     def clean(self):
         cleaned_data = super().clean()
-        password = cleaned_data.get('password')
-        confirm_password = cleaned_data.get('confirm_password')
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
 
-        if password and confirm_password:
-            if password != confirm_password:
-                raise forms.ValidationError("Passwords do not match")
-            if len(password) < 8:
-                raise forms.ValidationError("Password must be at least 8 characters long")
-            validate_password(password)
+        #валидация пароля и подтверждения пароля
+        try:
+            if password or confirm_password:
 
-        return cleaned_data
+                if password != confirm_password:
+                    raise forms.ValidationError(
+                        "Password and Confirm Password do not match"
+                    )
 
+                if len(password) < 8:
+                    raise forms.ValidationError("Password must be at least 8 characters long")
+
+                validate_password(password)
+                return cleaned_data
+        except forms.ValidationError as e:
+                raise forms.ValidationError(e.messages)
+
+    #валидация email на домены
+    def email_clean(self):
+        email = self.cleaned_data.get('email')
+        if not email.endswith(end=['@gmail.com',"@yahoo.com","@example.com"]):
+            raise forms.ValidationError("Email must be from the domains '@gmail.com' , '@yahoo.com' or '@example.com'")
+
+        if email in User.objects.values_list('email', flat=True):
+            raise forms.ValidationError("Email is already in use")
+
+        return email
+
+    #сохранение пользователя с хешированием пароля
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
@@ -43,26 +55,67 @@ class RegisterModel(ModelForm):
         return user
 
 
-class LoginForm(ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
         fields = ['username', 'password']
 
     def clean(self):
         cleaned_data = super().clean()
-        username = cleaned_data.get('username')
-        password = cleaned_data.get('password')
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
 
-        if username and password:
-            from django.contrib.auth import authenticate
-            user = authenticate(username=username, password=password)
-            if user is None:
-                raise forms.ValidationError("Invalid username or password")
-            self.user = user
+
+        try:
+
+            if username and password:
+                try:
+                    user = User.objects.get(username=username)
+                    if not user.check_password(password):
+                        raise forms.ValidationError("Invalid password")
+
+                except User.DoesNotExist:
+                    raise forms.ValidationError("Invalid username")
+
+        except forms.ValidationError as e:
+            raise forms.ValidationError(e.messages)
 
         return cleaned_data
 
     def get_user(self):
-        return self.user
+        username = self.cleaned_data.get("username")
+        return User.objects.get(username=username)
+
+# Это на будущее, не трогай
+# class ChooseFavChar(forms.Form):
+#     CHARACTERS = [
+#         ("okabe", "Rintaro Okabe"),
+#         ("kurisu", "Kurisu Makise"),
+#         ("mayuri", "Mayuri Shiina"),
+#         ("itaru", "Itaru Hashida"),
+#         ("suzuha", "Suzuha Amane"),
+#         ("luka", "Luka Urushibara"),
+#         ("faris", "Faris NyanNyan"),
+#         ("moeka", "Moeka Kiryu"),
+#         ("maho", "Maho Hiyajo"),
+#         ("yuugo", "Yuugo Tennouji"),
+#         ("nae", "Nae Tennouji"),
+#         ("nakabachi", "Dr. Nakabachi"),
+#         ("john_titor", "John Titor"),
+#         ("yukitaka", "Yukitaka Akiha"),
+#         ("leskinen", "Alexis Leskinen"),
+#         ("yuki", "Yuki Amane"),
+#         ("reyes", "Judy Reyes"),
+#         ("shido", "Shido"),
+#         ("kuroki", "Kuroki"),
+#     ]
+#     choice_char = forms.ChoiceField(
+#         choices=CHARACTERS,
+#         label="Choose ur fav character",
+#         help_text = "This choice wont affect the divergence of the world line",
+#         widget=forms.RadioSelect,
+#         required=True
+#     )
