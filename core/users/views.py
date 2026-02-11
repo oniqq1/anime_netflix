@@ -24,6 +24,7 @@ def login_view(request):
             login(request, user)
             response = redirect('http://127.0.0.1:8000/steins-gate/')
             response.set_cookie(key="username", value=user.username, max_age=60 * 60 * 24 * 3, httponly=True, secure=False)
+            return response
     else:
         form = LoginForm()
     return render(request, 'users/login.html', {"form": form})
@@ -40,3 +41,7 @@ def profile_view(request):
         "user": request.user,
         "profile": request.user.profile,
     })
+
+@login_required
+def profile_settings(request):
+    return render(request, "users/settings.html")

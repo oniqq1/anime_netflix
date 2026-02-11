@@ -1,9 +1,6 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
-
-def redirect_to_main_page(request):
-    re
 
 def steins_gate_page(request: HttpRequest) -> HttpResponse:
     return render(request, "steins-gate_page.html")
