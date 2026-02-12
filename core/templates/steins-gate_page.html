@@ -14,18 +14,14 @@
     </div>
 
     <div class="flex flex-col overflow-hidden">
-      <h2 class="text-4xl font-bold mt-1 truncate">Steins;Gate</h2>
+      <h2 class="text-4xl font-bold mt-1 truncate">{{ anime.name }}</h2>
       <div class="h-px w-full bg-zinc-600/60 my-3 mb-6 mt-6"></div>
-        <b>Сезон:</b> 2011 весна<br/>
-        <b>Тип:</b> ТВ (25 эп.), 25 мин.<br/>
-        <b>Жанры:</b> Триллер, Фантастика<br/>
+        <b>Сезон:</b>{{ anime.appearing }}<br/>
+        <b>Тип:</b>{{ anime.type }}<br/>
+        <b>Жанры:</b>{{ anime.genres }}<br/>
       <div class="h-px w-full bg-zinc-600/60 my-3 mb-6 mt-6"></div>
       <p class="text-zinc-300 text-lg leading-relaxed overflow-hidden line-clamp-6">
-        В Вратах Штейна рассказывается о группе молодых студентов-технарей.
-        Студенты находят способ менять прошлое по почте с помощью модифицированной микроволновки и начинают опыты с целью узнать,
-        насколько далеко сможет зайти их открытие, но в итоге все начинает выходить из-под контроля,
-        и студенты впутываются в заговор вокруг SERN — организации, стоящей за Большим адронным коллайдером — и Джона Титора,
-        утверждающего, что он явился из антиутопичного будущего.
+        {{ anime.description }}
       </p>
     </div>
 
