@@ -1,4 +1,12 @@
+
 from http.client import responses
+
+from django.shortcuts import render , redirect
+from .forms import RegisterModel , LoginForm
+from django.contrib.auth import login , logout
+from django.contrib.auth.decorators import login_required
+# Create your views here.
+
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
@@ -45,3 +53,4 @@ def profile_view(request):
 @login_required
 def profile_settings(request):
     return render(request, "users/settings.html")
+
