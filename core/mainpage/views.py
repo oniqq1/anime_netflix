@@ -1,9 +1,18 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from .models import AnimeDescription
+from .models import AnimeDescription , Comment
 
 
 def steins_gate_page(request):
+    if request.method == "POST":
+        comment_text = request.POST.get("comment")
+        if comment_text:
+            Comment.objects.create(
+                user=request.user,
+                anime=AnimeDescription.objects.get(name="Steins;Gate"),
+                text=comment_text
+            )
+
     anime, created = AnimeDescription.objects.get_or_create(
         name="Steins;Gate",
         defaults={
@@ -17,9 +26,19 @@ def steins_gate_page(request):
         утверждающего, что он явился из антиутопичного будущего.""",
         },
     )
-    return render(request, "steins-gate_page.html", {"anime": anime})
+    comments = Comment.objects.filter(anime=anime).order_by("-created_at")
+    return render(request, "steins-gate_page.html", {"anime": anime , "comments": comments})
 
 def steins_gate_zero_page(request):
+    if request.method == "POST":
+        comment_text = request.POST.get("comment")
+        if comment_text:
+            Comment.objects.create(
+                user=request.user,
+                anime=AnimeDescription.objects.get(name="Steins;Gate 0"),
+                text=comment_text
+            )
+
     anime, created = AnimeDescription.objects.get_or_create(
         name="Steins;Gate 0",
         defaults={
@@ -34,4 +53,6 @@ def steins_gate_zero_page(request):
         Начиная тестирование он и не предполагал, что воссоздание Курису принесет столько мучений и новых неожиданных последствий..."""
         }
     )
-    return render(request, "steins-gate-zero_page.html", {"anime": anime})
+
+    comments = Comment.objects.filter(anime=anime).order_by("-created_at")
+    return render(request, "steins-gate-zero_page.html", {"anime": anime , "comments": comments})
