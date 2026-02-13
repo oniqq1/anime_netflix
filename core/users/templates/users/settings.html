@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+
+<div class="max-w-[30rem] mx-auto bg-zinc-800/80 rounded-xl p-8 mt-8 mb-12 shadow-lg">
+    <button class="bg-blue-600 text-white w-full py-4 rounded-xl text-lg font-semibold transition hover:opacity-80 mt-2 mb-6">
+        <a>Change name</a>
+    </button>
+    <button class="bg-blue-600 text-white w-full py-4 rounded-xl text-lg font-semibold transition hover:opacity-80 mb-10">
+        <a>Change avatar</a>
+    </button>
+    <button class="bg-green-500 text-white w-full py-4 rounded-xl text-lg font-semibold transition hover:opacity-80 mb-10">
+        <a href="{% url 'profile' %}">Back to profile</a>
+    </button>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit"
+                    class="bg-red-600 text-white w-full py-4 rounded-xl text-lg font-semibold transition hover:opacity-80">
+                Logout
+            </button>
+        </form>
+</div>
+
+{% endblock %}

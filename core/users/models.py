@@ -7,4 +7,8 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True , default='avatars/default.jpg')
 
     def __str__(self):
+
         return self.user.username
+
+
+

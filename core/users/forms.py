@@ -1,5 +1,3 @@
-from tkinter.scrolledtext import example
-
 from django.contrib.auth.password_validation import validate_password
 from django.forms.models import ModelForm
 from django import forms
@@ -58,7 +56,8 @@ class RegisterModel(ModelForm):
 
 
 
-class LoginForm(ModelForm):
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=150)
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
@@ -89,3 +88,34 @@ class LoginForm(ModelForm):
     def get_user(self):
         username = self.cleaned_data.get("username")
         return User.objects.get(username=username)
+
+# Это на будущее, не трогай
+# class ChooseFavChar(forms.Form):
+#     CHARACTERS = [
+#         ("okabe", "Rintaro Okabe"),
+#         ("kurisu", "Kurisu Makise"),
+#         ("mayuri", "Mayuri Shiina"),
+#         ("itaru", "Itaru Hashida"),
+#         ("suzuha", "Suzuha Amane"),
+#         ("luka", "Luka Urushibara"),
+#         ("faris", "Faris NyanNyan"),
+#         ("moeka", "Moeka Kiryu"),
+#         ("maho", "Maho Hiyajo"),
+#         ("yuugo", "Yuugo Tennouji"),
+#         ("nae", "Nae Tennouji"),
+#         ("nakabachi", "Dr. Nakabachi"),
+#         ("john_titor", "John Titor"),
+#         ("yukitaka", "Yukitaka Akiha"),
+#         ("leskinen", "Alexis Leskinen"),
+#         ("yuki", "Yuki Amane"),
+#         ("reyes", "Judy Reyes"),
+#         ("shido", "Shido"),
+#         ("kuroki", "Kuroki"),
+#     ]
+#     choice_char = forms.ChoiceField(
+#         choices=CHARACTERS,
+#         label="Choose ur fav character",
+#         help_text = "This choice wont affect the divergence of the world line",
+#         widget=forms.RadioSelect,
+#         required=True
+#     )
