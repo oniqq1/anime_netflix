@@ -1,15 +1,10 @@
-# app_name/views.py
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .models import AnimeDescription, Comment
-from .constants import ANIME_DEFAULTS  # импортируем константы
+from .constants import ANIME_DEFAULTS
 
 def _anime_page(request, anime_name, template):
-    anime, _ = AnimeDescription.objects.get_or_create(
-        name=anime_name,
-        defaults=ANIME_DEFAULTS[anime_name],
-    )
-
+    anime, _ = AnimeDescription.objects.get_or_create(name=anime_name,defaults=ANIME_DEFAULTS[anime_name],)
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect(request.path)
