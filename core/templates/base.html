@@ -9,14 +9,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="{% static 'css/player.css' %}">
+
+    <style>
+        body {
+            background-image: url('{% static "img/background.jpg" %}');
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
     {% block extra_css %}{% endblock %}
 </head>
 
 <body class="bg-zinc-800 text-white">
 
     <header class="bg-zinc-900 text-white py-4 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-            {% include "includes/_divergence_meter.html" %}
-        <a href="http://127.0.0.1:8000/steins-gate/" class="absolute left-1/2 -translate-x-1/2 text-center text-4xl"><b>Future Gadget Laboratory</b></a>
+        {% include "includes/_divergence_meter.html" %}
+        <a href="{% url 'steins_gate_page' %}" class="absolute left-1/2 -translate-x-1/2 text-center text-4xl">
+            <b>Future Gadget Laboratory</b>
+        </a>
         {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" class="ml-auto hover:scale-105 transition-transform">
                 <img src="{% static 'img/register_bin.png' %}" alt="Profile" class="h-20 w-auto hover:scale-110 transition duration-200">
@@ -36,21 +47,13 @@
 
     <footer class="bg-zinc-900 text-white py-8 mt-12">
         <div class="max-w-[84rem] mx-auto text-center">
-            <p class="text-lg">© 2026 Steins;Gate fan site. All Rights Reserved</p>
+            <p class="text-lg">&copy; 2026 Steins;Gate fan site. All Rights Reserved</p>
             <p class="mt-2 text-lg">El Psy Kongroo</p>
             <p class="mt-4 text-sm text-zinc-400">
                 Contact info: info@animesite.com
             </p>
         </div>
     </footer>
-
-    <style>
-        body {
-            background-image: url('/static/img/background.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-        }
-    </style>
 
     <script src="{% static 'js/player_switch.js' %}"></script>
     {% block extra_js %}{% endblock %}
