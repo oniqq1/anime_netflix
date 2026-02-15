@@ -1,0 +1,71 @@
+<div class="max-w-[80rem] mx-auto mt-24 mb-10">
+  <div class="bg-zinc-800/80 rounded-xl p-8">
+
+    <button id="faq-toggle"
+            class="w-full text-left text-3xl font-bold flex justify-between items-center">
+      <span>F.A.Q.</span>
+      <span id="faq-icon" class="text-red-500 text-2xl transition-transform duration-300">˅</span>
+    </button>
+
+    <div id="faq-content"
+         class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+      <div class="mt-8 space-y-6">
+
+        <a href="https://steins-gate.fandom.com/wiki/List_of_Steins;Gate_games"
+           target="_blank"
+           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
+          Первоисточник
+        </a>
+        <a href="https://steins-gate.fandom.com/wiki/World_Line"
+           target="_blank"
+           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
+          Мировые линии
+        </a>
+        <a href="https://steins-gate.fandom.com/wiki/List_of_Known_World_Lines"
+           target="_blank"
+           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
+          Список известных мировых линий
+        </a>
+        <a href="https://steins-gate.fandom.com/wiki/SERN"
+           target="_blank"
+           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
+          СЕРН
+        </a>
+        <a href="https://steins-gate.fandom.com/wiki/World_Line_Convergence"
+           target="_blank"
+           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
+          Конвергенция мировых линий
+        </a>
+        <a href="https://steins-gate.fandom.com/wiki/Attractor_Field"
+           target="_blank"
+           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
+          Поля аттракторов
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const toggle = document.getElementById("faq-toggle");
+  const content = document.getElementById("faq-content");
+  const icon = document.getElementById("faq-icon");
+
+  toggle.addEventListener("click", function () {
+
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+      icon.textContent = "˅";
+      icon.classList.remove("rotate-45");
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+      icon.textContent = "˄";
+    }
+
+  });
+
+});
+</script>
