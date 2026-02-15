@@ -21,7 +21,7 @@
         <div class="w-full">
             <label class="block mb-2 text-lg" for="nickname">New Nickname</label>
             <input type="text" name="nickname" id="nickname"
-                   value="{{ user.profile.nickname|default_if_none:'' }}"
+                   value="{{ user.profile.nickname|default_if_none:user.username }}"
                    placeholder="Enter new nickname"
                    maxlength="150"
                    class="w-full bg-zinc-900/95 text-white px-5 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400">

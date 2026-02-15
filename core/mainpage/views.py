@@ -35,6 +35,7 @@ def steins_gate_page(request):
 
     return render(request, "steins-gate_page.html", {"anime": anime , "comments": comments})
 
+
 def steins_gate_zero_page(request):
     if request.method == "POST":
         comment_text = request.POST.get("comment")

@@ -8,10 +8,8 @@
 
     <h2 class="text-4xl font-bold text-center mb-10">👤 Profile</h2>
 
-    <!-- Основной блок -->
     <div class="flex gap-10 justify-center items-center">
 
-        <!-- Фото слева -->
         <div class="flex-shrink-0">
             {% if user.profile.avatar %}
                 <img src="{{ user.profile.avatar.url }}" alt="Current avatar"
@@ -23,13 +21,12 @@
             {% endif %}
         </div>
 
-        <!-- Информация справа -->
         <div class="flex flex-col justify-center gap-4 text-lg">
 
             <div>
                 <span class="text-zinc-400">Nickname:</span>
                 <p class="text-2xl font-semibold">
-                    {{ user.profile.nickname|default:"—" }}
+                    {{ user.profile.nickname|default:user.username }}
                 </p>
             </div>
 
@@ -50,7 +47,6 @@
         </div>
     </div>
 
-    <!-- Кнопка во всю ширину -->
     <div class="mt-10">
         <a href="{% url 'settings' %}"
            class="block w-full text-center bg-red-600 hover:bg-red-700 transition text-white py-4 rounded-xl text-lg font-semibold">

@@ -5,13 +5,10 @@ from .models import Profile
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
-    # Если пользователь только что создан
     if created:
         Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
-    # Сохраняем профиль каждый раз, когда обновляется User
-
     instance.profile.save()
 
