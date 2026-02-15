@@ -2,8 +2,8 @@ from django.contrib.auth.password_validation import validate_password
 from django import forms
 from django.contrib.auth.models import User
 
-from constants import ALLOWED_EMAIL_DOMAINS
 
+ALLOWED_EMAIL_DOMAINS = ("@gmail.com", "@yahoo.com", "@example.com")
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

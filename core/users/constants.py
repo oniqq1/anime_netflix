@@ -1,1 +1,0 @@
-ALLOWED_EMAIL_DOMAINS = ('@gmail.com', '@yahoo.com', '@example.com')

@@ -1,3 +1,8 @@
+ANIME_POSTERS = {
+    "Steins;Gate": "img/poster_1.jpg",
+    "Steins;Gate 0": "img/poster_2.jpg",
+}
+
 ANIME_DEFAULTS = {
     "Steins;Gate": {
         "appearing": "2011 весна",
