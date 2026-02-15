@@ -1,4 +1,4 @@
-# 🎬 Anime Netflix — Steins;Gate Fan Platform
+# 🎬 Anime Netflix - Steins;Gate Fan Platform
 
 A themed web application dedicated to **Steins;Gate**, where users can watch both seasons, create accounts, customize their profile, and interact through comments.
 
@@ -8,7 +8,7 @@ This project was developed as a **final course project** to demonstrate full-sta
 
 ## 🚀 About The Project
 
-**Anime Netflix** is a niche streaming-style website focused on a single title — *Steins;Gate*.
+**Anime Netflix** is a niche streaming-style website focused on a single title - *Steins;Gate*.
 
 Unlike a real streaming service, this platform was built to showcase:
 
@@ -58,8 +58,8 @@ The video player is implemented on the frontend side and works as an embedded me
 
 **Libraries**
 
-* Pillow — image processing (avatars)
-* python-dotenv / dotenv — environment variables
+* Pillow - image processing (avatars)
+* python-dotenv / dotenv - environment variables
 
 ---
 
