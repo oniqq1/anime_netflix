@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from .models import AnimeDescription , Comment
+from django.core.paginator import Paginator
 
 
 def steins_gate_page(request):
@@ -27,7 +28,13 @@ def steins_gate_page(request):
         },
     )
     comments = Comment.objects.filter(anime=anime).order_by("-created_at")
+
+    paginator = Paginator(comments, 6)
+    page_number = request.GET.get("page")
+    comments = paginator.get_page(page_number)
+
     return render(request, "steins-gate_page.html", {"anime": anime , "comments": comments})
+
 
 def steins_gate_zero_page(request):
     if request.method == "POST":
@@ -53,6 +60,10 @@ def steins_gate_zero_page(request):
         Начиная тестирование он и не предполагал, что воссоздание Курису принесет столько мучений и новых неожиданных последствий..."""
         }
     )
-
     comments = Comment.objects.filter(anime=anime).order_by("-created_at")
+
+    paginator = Paginator(comments, 6)
+    page_number = request.GET.get("page")
+    comments = paginator.get_page(page_number)
+
     return render(request, "steins-gate-zero_page.html", {"anime": anime , "comments": comments})

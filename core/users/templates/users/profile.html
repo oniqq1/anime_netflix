@@ -4,28 +4,55 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<div class="max-w-[50rem] mx-auto bg-zinc-800/80 rounded-xl p-8 mt-8 mb-12 shadow-lg">
+<div class="max-w-[40rem] mx-auto bg-zinc-800/80 rounded-xl p-10 mt-8 mb-12 shadow-lg">
 
-    <h2 class="text-4xl font-bold text-center mb-8">👤 Profile</h2>
+    <h2 class="text-4xl font-bold text-center mb-10">👤 Profile</h2>
 
-    <div class="flex flex-col items-center gap-6">
+    <div class="flex gap-10 justify-center items-center">
 
-        <div class="w-32 h-32 rounded-full bg-zinc-900 flex items-center justify-center text-5xl">
-            {{ user.username|first|upper }}
+        <div class="flex-shrink-0">
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="Current avatar"
+                     class="w-56 h-56 rounded-full object-cover ring-2 ring-yellow-400">
+            {% else %}
+                <div class="w-56 h-56 rounded-full bg-zinc-900 flex items-center justify-center text-5xl ring-2 ring-zinc-600">
+                    {{ user.username|first|upper }}
+                </div>
+            {% endif %}
         </div>
 
-        <div class="text-center">
-            <p class="text-2xl font-semibold">{{ user.username }}</p>
-            <p class="text-zinc-400">{{ user.email }}</p>
+        <div class="flex flex-col justify-center gap-4 text-lg">
+
+            <div>
+                <span class="text-zinc-400">Nickname:</span>
+                <p class="text-2xl font-semibold">
+                    {{ user.profile.nickname|default:user.username }}
+                </p>
+            </div>
+
+            <div>
+                <span class="text-zinc-400">Username:</span>
+                <p class="text-2xl font-semibold">
+                    {{ user.username }}
+                </p>
+            </div>
+
+            <div>
+                <span class="text-zinc-400">Email:</span>
+                <p class="text-zinc-300">
+                    {{ user.email }}
+                </p>
+            </div>
+
         </div>
-
-
-            <button type="submit">
-                <a class="bg-red-600 text-white px-10 py-4 rounded-xl text-lg font-semibold transition hover:opacity-80" href="{% url 'settings' %}">Settings</a>
-            </button>
-
     </div>
 
-    
+    <div class="mt-10">
+        <a href="{% url 'settings' %}"
+           class="block w-full text-center bg-red-600 hover:bg-red-700 transition text-white py-4 rounded-xl text-lg font-semibold">
+            Settings
+        </a>
+    </div>
+
 </div>
 {% endblock %}

@@ -49,12 +49,63 @@
   </div>
 </div>
 
+<div class="max-w-[80rem] mx-auto mt-24 mb-32">
+  <div class="bg-zinc-800/80 rounded-xl p-8">
+    <h3 class="text-3xl font-bold mb-6">Комментарии</h3>
 
-<div class="max-w-[80rem] mx-auto mt-24">
-  <div class="flex gap-6 bg-zinc-800/80 rounded-xl p-6">
-    <p class="mx-auto text-center text-zinc-300">Comments</p>
-    <!-- Комментарии соответственно -->
+    {% if user.is_authenticated %}
+      <form method="POST" class="mb-10">
+        {% csrf_token %}
+        <textarea name="comment" rows="4" placeholder="Написать комментарий..." class="w-full bg-zinc-900 text-white rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-red-500 resize-none" required></textarea>
+        <button type="submit" class="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 transition rounded-lg font-medium">
+          Отправить
+        </button>
+      </form>
+    {% else %}
+      <div class="mb-8 p-4 bg-zinc-900 rounded-lg text-center text-zinc-400">
+        Чтобы оставить комментарий войдите в аккаунт
+      </div>
+    {% endif %}
+
+    <div class="space-y-6">
+      {% for comment in comments %}
+        <div class="bg-zinc-900 p-5 rounded-xl">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-semibold text-red-500">
+              {{ comment.user.profile.nickname }}
+            </span>
+            <span class="text-sm text-zinc-500">
+              {{ comment.created_at|date:"d.m.Y H:i" }}
+            </span>
+          </div>
+          <p class="text-zinc-300 whitespace-pre-line">
+            {{ comment.text }}
+          </p>
+        </div>
+      {% empty %}
+        <div class="text-center text-zinc-500">
+          Пока нет комментариев
+        </div>
+      {% endfor %}
+    </div>
   </div>
-</div>
+
+  {% if comments.has_other_pages %}
+  <div class="mt-10 flex justify-center items-center gap-4">
+      {% if comments.has_previous %}
+          <a href="?page={{ comments.previous_page_number }}" class="px-4 py-2 bg-zinc-700 rounded-lg hover:bg-zinc-600 transition">← Назад</a>
+      {% endif %}
+
+      <span class="text-zinc-400">
+          Страница {{ comments.number }} из {{ comments.paginator.num_pages }}
+      </span>
+
+      {% if comments.has_next %}
+      <a href="?page={{ comments.next_page_number }}" class="px-4 py-2 bg-zinc-700 rounded-lg hover:bg-zinc-600 transition">Далее →</a>
+      {% endif %}
+
+  </div>
+  {% endif %}
+  </div>
 
 {% endblock %}
