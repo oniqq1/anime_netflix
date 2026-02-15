@@ -3,15 +3,10 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
 
+
 @receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
+def create_or_update_profile(sender, instance, created, **kwargs):
     if created:
-        profile = Profile.objects.create(user=instance)
-        profile.nickname = instance.username
-        profile.save()
-
-
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
+        Profile.objects.create(user=instance, nickname=instance.username)
+    else:
+        instance.profile.save()
