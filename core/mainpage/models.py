@@ -3,10 +3,10 @@ from django.db import models
 
 
 class AnimeDescription(models.Model):
-    name = models.CharField()
-    appearing = models.TextField()
-    type = models.TextField()
-    genres = models.TextField()
+    name = models.CharField(max_length=255, unique=True)
+    appearing = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    genres = models.CharField(max_length=500)
     description = models.TextField()
 
     def __str__(self):
@@ -14,10 +14,13 @@ class AnimeDescription(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    anime = models.ForeignKey(AnimeDescription, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="anime_comments")
+    anime = models.ForeignKey(AnimeDescription, on_delete=models.CASCADE, related_name="comments")
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.user.username} - {self.anime.name}"

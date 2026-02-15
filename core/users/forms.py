@@ -18,7 +18,6 @@ class RegisterModel(ModelForm):
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
 
-        #валидация пароля и подтверждения пароля
         try:
             if password or confirm_password:
 
@@ -35,7 +34,6 @@ class RegisterModel(ModelForm):
         except forms.ValidationError as e:
                 raise forms.ValidationError(e.messages)
 
-    #валидация email на домены
     def email_clean(self):
         email = self.cleaned_data.get('email')
         if not email.endswith(end=['@gmail.com',"@yahoo.com","@example.com"]):
@@ -46,7 +44,6 @@ class RegisterModel(ModelForm):
 
         return email
 
-    #сохранение пользователя с хешированием пароля
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
@@ -88,34 +85,3 @@ class LoginForm(forms.Form):
     def get_user(self):
         username = self.cleaned_data.get("username")
         return User.objects.get(username=username)
-
-# Это на будущее, не трогай
-# class ChooseFavChar(forms.Form):
-#     CHARACTERS = [
-#         ("okabe", "Rintaro Okabe"),
-#         ("kurisu", "Kurisu Makise"),
-#         ("mayuri", "Mayuri Shiina"),
-#         ("itaru", "Itaru Hashida"),
-#         ("suzuha", "Suzuha Amane"),
-#         ("luka", "Luka Urushibara"),
-#         ("faris", "Faris NyanNyan"),
-#         ("moeka", "Moeka Kiryu"),
-#         ("maho", "Maho Hiyajo"),
-#         ("yuugo", "Yuugo Tennouji"),
-#         ("nae", "Nae Tennouji"),
-#         ("nakabachi", "Dr. Nakabachi"),
-#         ("john_titor", "John Titor"),
-#         ("yukitaka", "Yukitaka Akiha"),
-#         ("leskinen", "Alexis Leskinen"),
-#         ("yuki", "Yuki Amane"),
-#         ("reyes", "Judy Reyes"),
-#         ("shido", "Shido"),
-#         ("kuroki", "Kuroki"),
-#     ]
-#     choice_char = forms.ChoiceField(
-#         choices=CHARACTERS,
-#         label="Choose ur fav character",
-#         help_text = "This choice wont affect the divergence of the world line",
-#         widget=forms.RadioSelect,
-#         required=True
-#     )
