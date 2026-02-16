@@ -1,3 +1,19 @@
+ANIME_PLAYERS = {
+    "Steins;Gate": {
+        "player_main": "https://www.anilibria.tv/public/iframe.php?id=8674",
+        "player_backup": "//aniqit.com/serial/27423/9bc813cf9293f1305ce036b03845618a/720p?translations=false",
+    },
+    "Steins;Gate 0": {
+        "player_main": "https://www.anilibria.tv/public/iframe.php?id=6140",
+        "player_backup": "//kodik.info/serial/10115/68d9f5d02225e165c1e650faecfaa3d8/720p?translations=false",
+    },
+}
+
+ANIME_POSTERS = {
+    "Steins;Gate": "img/poster_1.jpg",
+    "Steins;Gate 0": "img/poster_2.jpg",
+}
+
 ANIME_DEFAULTS = {
     "Steins;Gate": {
         "appearing": "2011 весна",
@@ -25,3 +41,12 @@ ANIME_DEFAULTS = {
         ),
     },
 }
+
+ANIME_QUESTIONS = [
+        {"label": "Первоисточник", "url": "https://steins-gate.fandom.com/wiki/List_of_Steins;Gate_games"},
+        {"label": "Мировые линии", "url": "https://steins-gate.fandom.com/wiki/World_Line"},
+        {"label": "Список известных мировых линий", "url": "https://steins-gate.fandom.com/wiki/List_of_Known_World_Lines"},
+        {"label": "СЕРН", "url": "https://steins-gate.fandom.com/wiki/SERN"},
+        {"label": "Конвергенция мировых линий", "url": "https://steins-gate.fandom.com/wiki/World_Line_Convergence"},
+        {"label": "Поля аттракторов", "url": "https://steins-gate.fandom.com/wiki/Attractor_Field"},
+]

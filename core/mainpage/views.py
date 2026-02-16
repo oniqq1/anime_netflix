@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .models import AnimeDescription, Comment
-from .constants import ANIME_DEFAULTS
+from .constants import ANIME_DEFAULTS, ANIME_POSTERS, ANIME_PLAYERS, ANIME_QUESTIONS
 import logging
 
 logger = logging.getLogger(__name__)
@@ -22,7 +22,10 @@ def _anime_page(request, anime_name, template):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    return render(request, template, {"anime": anime, "comments": page_obj})
+    poster = ANIME_POSTERS.get(anime_name, "")
+    players = ANIME_PLAYERS.get(anime_name, {})
+
+    return render(request, template, {"anime": anime, "comments": page_obj, "poster": poster, "players": players, "questions": ANIME_QUESTIONS})
 
 
 def steins_gate_page(request):
