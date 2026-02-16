@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,50 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+
+
+
+load_dotenv()
+
+
+email_host = os.getenv('EMAIL_HOST_USER')
+password_email_host = os.getenv('EMAIL_HOST_PASSWORD')
+
+
+
+
+
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+
+    "formatters": {
+        "standard": {
+            "format": "%(asctime)s | %(levelname)s | %(name)s | %(message)s "
+        },
+    },
+
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "logs/django.log",
+            "formatter": "standard",
+        },
+    },
+
+    "root": {
+        "handlers": ["console", "file"],
+        "level": "INFO",
+    },
+}
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,8 +105,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 
-EMAIL_HOST_USER = 'steinsgatefansite@gmail.com'
-EMAIL_HOST_PASSWORD = 'zelqppadjkatpdqp'
+EMAIL_HOST_USER = email_host
+EMAIL_HOST_PASSWORD = password_email_host
 
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True

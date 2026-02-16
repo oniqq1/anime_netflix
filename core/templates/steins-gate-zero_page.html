@@ -71,9 +71,17 @@
       {% for comment in comments %}
         <div class="bg-zinc-900 p-5 rounded-xl">
           <div class="flex justify-between items-center mb-2">
-            <span class="font-semibold text-red-500">
-              {{ comment.user.profile.nickname }}
-            </span>
+              <div class="flex items-center font-semibold text-red-500 space-x-2 text-lg">
+                  {% if comment.user.profile.avatar %}
+                      <img src="{{ comment.user.profile.avatar.url }}" alt="Avatar"
+                           class="w-8 h-8 rounded-full object-cover ring-2 ring-yellow-400 mr-1">
+                  {% else %}
+                      <div class="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-sm ring-2 ring-zinc-600 mr-1">
+                          {{ comment.user.username|first|upper }}
+                      </div>
+                  {% endif %}
+                  <span>{{ comment.user.profile.nickname|default_if_none:comment.user.username }}</span>
+              </div>
             <span class="text-sm text-zinc-500">
               {{ comment.created_at|date:"d.m.Y H:i" }}
             </span>
