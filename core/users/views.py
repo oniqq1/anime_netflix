@@ -30,7 +30,7 @@ def register_view(request):
             return redirect('email_verification')
 
     else:
-        form = RegisterModel()
+        form = RegisterForm()
         logger.info("Registration page opened", extra={'username': request.user.username if request.user.is_authenticated else None})
     return render(request, 'users/register.html', {"form": form})
 
@@ -128,3 +128,4 @@ def change_avatar(request):
 @login_required
 def profile_settings(request):
     return render(request, "users/settings.html")
+
