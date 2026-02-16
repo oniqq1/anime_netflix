@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from .models import AnimeDescription, Comment
 from .constants import ANIME_DEFAULTS, ANIME_POSTERS, ANIME_PLAYERS, ANIME_QUESTIONS
+import logging
+
+logger = logging.getLogger(__name__)
 
 def _anime_page(request, anime_name, template):
     anime, _ = AnimeDescription.objects.get_or_create(name=anime_name,defaults=ANIME_DEFAULTS[anime_name],)
@@ -11,6 +14,7 @@ def _anime_page(request, anime_name, template):
         comment_text = request.POST.get("comment", "").strip()
         if comment_text:
             Comment.objects.create(user=request.user, anime=anime, text=comment_text)
+            logger.info(f"Anime {anime_name} comment {comment_text} , user={request.user.username}" )
         return redirect(request.path)
 
     comments = anime.comments.select_related("user", "user__profile")
@@ -25,8 +29,10 @@ def _anime_page(request, anime_name, template):
 
 
 def steins_gate_page(request):
+    logger.info(f"Steins gate page opened , user={request.user.username if request.user.is_authenticated else None}")
     return _anime_page(request, "Steins;Gate", "steins-gate_page.html")
 
 
 def steins_gate_zero_page(request):
+    logger.info(f"Steins gate zero page opened , user={request.user.username if request.user.is_authenticated else None}")
     return _anime_page(request, "Steins;Gate 0", "steins-gate-zero_page.html")
