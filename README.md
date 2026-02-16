@@ -217,7 +217,7 @@ It is intended as a **portfolio project**, not a production streaming service.
 
 ## 👨‍💻 Author
 
-- [mailor](https://github.com/mailorq) - Frontend , Backend
+- [mailor](https://github.com/mailorq) - Frontend, Backend
 - [oinqq](https://github.com/oniqq1) - Backend 
 ---
 
