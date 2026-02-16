@@ -11,36 +11,13 @@
          class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
       <div class="mt-8 space-y-6">
 
-        <a href="https://steins-gate.fandom.com/wiki/List_of_Steins;Gate_games"
+        {% for item in questions %}
+        <a href="{{ item.url }}"
            target="_blank"
            class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
-          Первоисточник
+          {{ item.label }}
         </a>
-        <a href="https://steins-gate.fandom.com/wiki/World_Line"
-           target="_blank"
-           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
-          Мировые линии
-        </a>
-        <a href="https://steins-gate.fandom.com/wiki/List_of_Known_World_Lines"
-           target="_blank"
-           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
-          Список известных мировых линий
-        </a>
-        <a href="https://steins-gate.fandom.com/wiki/SERN"
-           target="_blank"
-           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
-          СЕРН
-        </a>
-        <a href="https://steins-gate.fandom.com/wiki/World_Line_Convergence"
-           target="_blank"
-           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
-          Конвергенция мировых линий
-        </a>
-        <a href="https://steins-gate.fandom.com/wiki/Attractor_Field"
-           target="_blank"
-           class="block bg-zinc-900 p-5 rounded-xl hover:bg-zinc-800 transition">
-          Поля аттракторов
-        </a>
+        {% endfor %}
 
       </div>
     </div>
@@ -59,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
       icon.textContent = "˅";
-      icon.classList.remove("rotate-45");
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
       icon.textContent = "˄";
