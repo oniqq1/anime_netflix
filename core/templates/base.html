@@ -23,21 +23,61 @@
 
 <body class="bg-zinc-800 text-white">
 
-    <header class="bg-zinc-900 text-white py-4 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
-        {% include "includes/_divergence_meter.html" %}
-        <a href="{% url 'steins_gate_page' %}" class="absolute left-1/2 -translate-x-1/2 text-center text-4xl">
-            <b>Future Gadget Laboratory</b>
+<header class="bg-zinc-900 text-white py-4 px-9 flex justify-between items-center fixed top-0 left-0 right-0 z-50">
+
+    {% include "includes/_divergence_meter.html" %}
+
+    <li class="relative group list-none ml-6">
+        <button class="flex items-center gap-2 text-sm hover:text-orange-400 transition-colors cursor-pointer">
+            <span class="font-mono tracking-widest uppercase">Мировые линии</span>
+            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </button>
+        <ul class="absolute left-0 mt-2 w-56 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl
+                   opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <li>
+                <a href="{% url 'steins_gate_page' %}" class="flex justify-between px-4 py-2.5 hover:bg-zinc-800 transition-colors">
+                    <span class="font-mono text-orange-500 text-sm">0.337187</span>
+                    <span class="text-zinc-400 text-sm">Steins;Gate</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'steins_gate_missing_link' %}" class="flex justify-between px-4 py-2.5 hover:bg-zinc-800 transition-colors">
+                    <span class="font-mono text-orange-500 text-sm">1.130426</span>
+                    <span class="text-zinc-400 text-sm">Серия 23β</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'steins_gate_zero_page' %}" class="flex justify-between px-4 py-2.5 hover:bg-zinc-800 transition-colors">
+                    <span class="font-mono text-orange-500 text-sm">1.129848</span>
+                    <span class="text-zinc-400 text-sm">Steins;Gate 0</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'steins_gate_load_region' %}" class="flex justify-between px-4 py-2.5 hover:bg-zinc-800 transition-colors">
+                    <span class="font-mono text-orange-500 text-sm">1.130205</span>
+                    <span class="text-zinc-400 text-sm">Фильм</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <a href="{% url 'future_gadget_laboratory' %}" class="absolute left-1/2 -translate-x-1/2 text-4xl font-bold">
+        Future Gadget Laboratory
+    </a>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="ml-auto hover:scale-105 transition-transform">
+            <img src="{% static 'img/register_bin.png' %}" alt="Profile" class="h-20 w-auto hover:scale-110 transition duration-200">
         </a>
-        {% if user.is_authenticated %}
-            <a href="{% url 'profile' %}" class="ml-auto hover:scale-105 transition-transform">
-                <img src="{% static 'img/register_bin.png' %}" alt="Profile" class="h-20 w-auto hover:scale-110 transition duration-200">
-            </a>
-        {% else %}
-            <a href="{% url 'register' %}" class="ml-auto hover:scale-105 transition-transform">
-                <img src="{% static 'img/register_bin.png' %}" alt="Registration" class="h-20 w-auto hover:scale-110 transition duration-200">
-            </a>
-        {% endif %}
-    </header>
+    {% else %}
+        <a href="{% url 'register' %}" class="ml-auto hover:scale-105 transition-transform">
+            <img src="{% static 'img/register_bin.png' %}" alt="Register" class="h-20 w-auto hover:scale-110 transition duration-200">
+        </a>
+    {% endif %}
+
+</header>
 
     <main class="pt-24">
         <div class="max-w-[84rem] mx-auto bg-zinc-900/95 px-6 py-8 min-h-screen">

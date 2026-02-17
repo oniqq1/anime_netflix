@@ -9,9 +9,9 @@ class DivergenceMeter {
     }
 
     setValue(value) {
-        const cleanValue = value.replace(/[^0-9]/g, '');
+        const clean = value.replace(/[^0-9]/g, '');
         this.digits.forEach((el, i) => {
-            if (cleanValue[i]) el.innerText = cleanValue[i];
+            if (clean[i] !== undefined) el.innerText = clean[i];
         });
     }
 
@@ -20,18 +20,14 @@ class DivergenceMeter {
         this.isAnimating = true;
 
         const startTime = Date.now();
-        const cleanTarget = targetValue.replace(/[^0-9]/g, '');
 
         const interval = setInterval(() => {
-            const now = Date.now();
-
             this.digits.forEach(el => {
                 el.innerText = Math.floor(Math.random() * 10);
-                if (Math.random() > 0.8) el.classList.add('flicker');
-                else el.classList.remove('flicker');
+                el.classList.toggle('flicker', Math.random() > 0.8);
             });
 
-            if (now - startTime >= duration) {
+            if (Date.now() - startTime >= duration) {
                 clearInterval(interval);
                 this.setValue(targetValue);
                 this.digits.forEach(el => el.classList.remove('flicker'));
