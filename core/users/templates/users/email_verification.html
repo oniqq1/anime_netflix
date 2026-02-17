@@ -82,7 +82,6 @@
                 updateHidden();
             });
 
-            // Handle paste — distribute digits across all inputs
             input.addEventListener('paste', (e) => {
                 e.preventDefault();
                 const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
@@ -94,7 +93,6 @@
                 updateHidden();
             });
 
-            // Handle Backspace — move to previous input
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Backspace' && !input.value && idx > 0) {
                     inputs[idx - 1].focus();
@@ -107,13 +105,11 @@
                 }
             });
 
-            // Select content on focus for easy replacement
             input.addEventListener('focus', () => {
                 input.select();
             });
         });
 
-        // Auto-focus the first input
         inputs[0].focus();
     });
 </script>
