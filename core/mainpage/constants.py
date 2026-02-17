@@ -76,10 +76,14 @@ ANIME_DEFAULTS = {
 }
 
 ANIME_QUESTIONS = [
-        {"label": "Первоисточник", "url": "https://steins-gate.fandom.com/wiki/List_of_Steins;Gate_games"},
-        {"label": "Мировые линии", "url": "https://steins-gate.fandom.com/wiki/World_Line"},
-        {"label": "Список известных мировых линий", "url": "https://steins-gate.fandom.com/wiki/List_of_Known_World_Lines"},
-        {"label": "СЕРН", "url": "https://steins-gate.fandom.com/wiki/SERN"},
-        {"label": "Конвергенция мировых линий", "url": "https://steins-gate.fandom.com/wiki/World_Line_Convergence"},
-        {"label": "Поля аттракторов", "url": "https://steins-gate.fandom.com/wiki/Attractor_Field"},
+    {"label": "Первоисточник", "url": "https://steins-gate.fandom.com/wiki/List_of_Steins;Gate_games"},
+    {"label": "Мировые линии", "url": "https://steins-gate.fandom.com/wiki/World_Line"},
+    {"label": "Список известных мировых линий", "url": "https://steins-gate.fandom.com/wiki/List_of_Known_World_Lines"},
+    {"label": "СЕРН", "url": "https://steins-gate.fandom.com/wiki/SERN"},
+    {"label": "Конвергенция мировых линий", "url": "https://steins-gate.fandom.com/wiki/World_Line_Convergence"},
+    {"label": "Поля аттракторов", "url": "https://steins-gate.fandom.com/wiki/Attractor_Field"},
+    {"label": "Считывающий Штейнер", "url": "https://steins-gate.fandom.com/wiki/Reading_Steiner"},
+    {"label": "Теории перемещения во времени", "url": "https://steins-gate.fandom.com/wiki/Time-travel_theories"},
+    {"label": "Раундеры", "url": "https://steins-gate.fandom.com/wiki/Rounders"},
+    {"label": "Ди-мейлы", "url": "https://steins-gate.fandom.com/wiki/D-Mail"},
 ]
