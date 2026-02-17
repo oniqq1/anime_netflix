@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from .models import AnimeDescription, Comment
 from .constants import ANIME_DEFAULTS, ANIME_POSTERS, ANIME_PLAYERS, ANIME_QUESTIONS
 import logging
+import bleach
 
 logger = logging.getLogger(__name__)
 
@@ -12,7 +13,9 @@ def _anime_page(request, anime_name, template):
         if not request.user.is_authenticated:
             return redirect(request.path)
         comment_text = request.POST.get("comment", "").strip()
-        if comment_text:
+        # Отчистка от html тегов
+        comment_text = bleach.clean(comment_text, tags=[], strip=True)
+        if comment_text and len(comment_text) < 2000:
             Comment.objects.create(user=request.user, anime=anime, text=comment_text)
             logger.info(f"Anime {anime_name} comment {comment_text} , user={request.user.username}" )
         return redirect(request.path)
