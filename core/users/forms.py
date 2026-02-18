@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 
-ALLOWED_EMAIL_DOMAINS = ("@gmail.com", "@yahoo.com", "@example.com")
+ALLOWED_EMAIL_DOMAINS = ("@gmail.com", "@yahoo.com", "@ukr.net", "@mail.ru", "@yandex.ru", "@outlook.com", "@icloud.com")
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -17,9 +17,7 @@ class RegisterForm(forms.ModelForm):
         email = self.cleaned_data.get('email')
 
         if not email or not email.endswith(ALLOWED_EMAIL_DOMAINS):
-            raise forms.ValidationError(
-                + ", ".join(ALLOWED_EMAIL_DOMAINS)
-            )
+            raise forms.ValidationError(', '.join(ALLOWED_EMAIL_DOMAINS))
 
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Email is already in use")

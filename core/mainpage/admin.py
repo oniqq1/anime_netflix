@@ -3,5 +3,3 @@ from .models import AnimeDescription , Comment
 
 admin.site.register(AnimeDescription)
 admin.site.register(Comment)
-
-# Register your models here.

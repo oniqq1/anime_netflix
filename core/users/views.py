@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random
 import logging
+import os
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -36,30 +38,57 @@ def register_view(request):
 
 
 def email_verification_view(request):
+    # Если нет данных регистрации -- нечего тут делать
+    if not request.session.get('registration_data'):
+        return redirect('register')
+
+    # Если попытки исчерпаны блок доступа
+    attempts = request.session.get('verification_attempts', 0)
+    if attempts >= 5:
+        request.session.pop('verification_code', None)
+        request.session.pop('registration_data', None)
+        request.session.pop('verification_attempts', None)
+        return redirect('register')
+
     if request.method == 'POST':
-        code = request.POST.get('code')
+        code = request.POST.get('code', '')
 
-        if code and int(code) == request.session.get('verification_code'):
+        if not code.isdigit():
+            return render(request, 'users/email_verification.html', {
+                'error': 'Код должен содержать только цифры.'
+            })
 
+        request.session['verification_attempts'] = attempts + 1
+
+        if int(code) == request.session.get('verification_code'):
             data = request.session.get('registration_data')
 
             if not data:
-                logger.warning(f"No registration data found in session during email verification , user={request.user.username if request.user.is_authenticated else None}")
                 return redirect('register')
 
             form = RegisterForm(data)
 
             if form.is_valid():
                 user = form.save()
-
                 login(request, user)
-                logger.info(f"Email verification email sent , user={user.username}")
 
                 request.session.pop('verification_code', None)
                 request.session.pop('registration_data', None)
+                request.session.pop('verification_attempts', None)
 
-                return redirect("steins_gate_page")
-    logger.info(f'Email verification page opened , user={request.user.username if request.user.is_authenticated else None}')
+                return redirect('steins_gate_page')
+        else:
+            remaining = 5 - (attempts + 1)
+            if remaining <= 0:
+                request.session.pop('verification_code', None)
+                request.session.pop('registration_data', None)
+                request.session.pop('verification_attempts', None)
+                return redirect('register')
+
+            return render(request, 'users/email_verification.html', {
+                'error': f'Неверный код. Осталось попыток: {remaining}'
+            })
+
     return render(request, 'users/email_verification.html')
 
 
@@ -70,8 +99,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             response = redirect("steins_gate_page")
-            response.set_cookie(key="username", value=user.username, max_age=60 * 60 * 24 * 3, httponly=True,
-                                secure=False)
+            response.set_cookie(key="username", value=user.username, max_age=60 * 60 * 24 * 7, httponly=True, secure=False, samesite='Lax',) # Перед деплоем поменяй secure на Тру
             logger.debug(f"User logged in , user={user.username}")
             return response
     else:
@@ -103,28 +131,46 @@ def profile_view(request):
 @login_required
 def change_nickname(request):
     if request.method == 'POST':
-        new_nickname = request.POST.get('nickname')
-        if new_nickname:
-            request.user.profile.nickname = new_nickname
-            request.user.profile.save()
-            logger.debug(f"Nickname changed , user={request.user.username} new_nickname={new_nickname} ")
-            return redirect('profile')
+        new_nickname = request.POST.get('nickname', '').strip()
+        if new_nickname and len(new_nickname) <= 30:
+            # Только буквы, цифры, пробелы, тире, подчеркивания
+            if re.match(r'^[\w\s\-]+$', new_nickname, re.UNICODE):
+                request.user.profile.nickname = new_nickname
+                request.user.profile.save()
+                return redirect('profile')
+    return render(request, 'users/change_nickname.html',
+                 {'error': 'Invalid nickname'})
 
 
-    return render(request, 'users/change_nickname.html')
-
+ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.webp'}
+MAX_AVATAR_SIZE = 8 * 1024 * 1024
 
 @login_required
 def change_avatar(request):
     if request.method == 'POST' and request.FILES.get('avatar'):
         avatar = request.FILES['avatar']
-        request.user.profile.avatar = avatar
-        request.user.profile.save()
-        logger.debug(f"Avatar changed , user={request.user.username} , avatar={avatar.name} ")
-        return redirect('profile')
-    return render(request, 'users/change_avatar.html')
+
+        if avatar.size > ALLOWED_EXTENSIONS:
+            return render(request, 'users/change_avatar.html',
+                          {'error': 'File too large. Max 5 MB'})
+
+        ext = os.path.splitext(avatar.name)[1].lower()
+        if ext not in MAX_AVATAR_SIZE:
+            return render(request, 'users/change_avatar.html',
+                          {'error': 'Only JPG, PNG, GIF, WEBP allowed'})
+
+        # Проверяем, что это реально изображение
+        try:
+            from PIL import Image
+            img = Image.open(avatar)
+            img.verify()
+            avatar.seek(0)  # Сброс указателя после верефи
+        except Exception:
+            return render(request, 'users/change_avatar.html',
+                          {'error': 'Invalid image file'})
 
 
 @login_required
 def profile_settings(request):
     return render(request, "users/settings.html")
+

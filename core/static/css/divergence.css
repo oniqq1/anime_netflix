@@ -1,10 +1,10 @@
 /* static/css/divergence.css */
+
 .nixie-container {
     display: flex;
     align-items: center;
     background: oklch(21% 0.006 285.885);
     padding: 10px;
-    cursor: pointer;
     width: fit-content;
     user-select: none;
 }
@@ -15,7 +15,6 @@
     font-weight: bold;
     color: #ff5500;
     text-shadow:
-        /* Существующее внутреннее свечение текста */
         0 0 4px rgba(255, 85, 0, 0.9),
         0 0 10px rgba(255, 34, 0, 0.7);
     width: 30px;
@@ -25,10 +24,8 @@
     border: 1px solid rgba(255, 85, 0, 0.2);
     border-radius: 5px;
     margin: 0 2px;
-    /* Новая легкая внешняя тень */
     box-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
 }
-
 
 .nixie-dot {
     font-size: 2.2rem;
@@ -40,21 +37,3 @@
 .flicker {
     opacity: 0.3;
 }
-
-.header-meter-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px; /* расстояние между текстом и nixie */
-}
-
-.line-text {
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: #ff5500;
-    text-shadow:
-        0 0 3px rgba(255, 85, 0, 0.7),
-        0 0 6px rgba(255, 34, 0, 0.5);
-    cursor: default;
-    white-space: nowrap;
-}
-
