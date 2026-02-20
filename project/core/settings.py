@@ -199,6 +199,8 @@ USE_TZ = True
 
 from pathlib import Path
 
-STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
