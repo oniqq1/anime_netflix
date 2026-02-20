@@ -39,7 +39,7 @@ def steins_gate_zero_page(request):
     return _anime_page(request, "Steins;Gate 0", "steins-gate-zero_page.html")
 
 def steins_gate_load_region_page(request):
-    logger.info(f"Steins Gate: Load Region of Déjà Vu page opened , user={request.user.username if request.user.is_authenticated else None}")
+    logger.info(f"Steins Gate: Load Region of Deja Vu page opened, user={request.user.username if request.user.is_authenticated else None}")
     return _anime_page(request, "Steins;Gate: Load Region of Deja Vu", "steins_gate_load_region_page.html")
 
 def steins_gate_missing_link(request):
