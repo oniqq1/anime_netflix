@@ -1,0 +1,303 @@
+2026-02-15 21:45:38,773 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:45:42,171 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:45:42,196 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:46:19,626 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:46:26,807 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:46:26,817 | INFO | mainpage.views | Anime Steins;Gate comment 1313 | user=oinqq
+2026-02-15 21:46:26,822 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:48:53,827 | INFO | mainpage.views | Steins gate page opened | user=oinqq
+2026-02-15 21:54:02,431 | INFO | django.utils.autoreload | Watching for file changes with StatReloader 
+2026-02-15 21:54:04,584 | INFO | mainpage.views | Steins gate page opened , user=oinqq 
+2026-02-15 21:54:09,756 | INFO | mainpage.views | Steins gate page opened , user=None 
+2026-02-15 21:54:18,181 | INFO | users.views | Registration page opened 
+2026-02-15 21:54:19,563 | INFO | users.views | Login page opened , user=None 
+2026-02-15 21:54:27,028 | INFO | mainpage.views | Steins gate page opened , user=oinqq 
+2026-02-15 21:54:39,503 | INFO | mainpage.views | Steins gate page opened , user=oinqq 
+2026-02-15 21:55:05,094 | WARNING | django.request | Not Found: /users/pfa 
+2026-02-15 21:55:11,324 | WARNING | django.request | Not Found: /user 
+2026-02-15 21:55:39,749 | INFO | django.utils.autoreload | C:\Users\qazws\PycharmProjects\anime_netflix\core\core\settings.py changed, reloading. 
+2026-02-15 21:56:04,797 | INFO | django.utils.autoreload | Watching for file changes with StatReloader 
+2026-02-15 21:56:05,586 | INFO | mainpage.views | Steins gate page opened , user=oinqq 
+2026-02-15 21:56:07,091 | INFO | mainpage.views | Steins gate page opened , user=oinqq 
+2026-02-15 21:56:48,016 | INFO | mainpage.views | Steins gate page opened , user=oinqq 
+2026-02-20 17:48:06,078 | ERROR | django.request | Internal Server Error: /steins-gate/ 
+Traceback (most recent call last):
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 246, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 333, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 557, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 557, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 506, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 561, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\core\mainpage\views.py", line 34, in steins_gate_page
+    logger.info(f"Steins Gate page opened , user={request.user.username if request.user.is_authenticated else None}")
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\middleware.py", line 40, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\middleware.py", line 20, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 311, in get_user
+    user_id = _get_user_session_key(request)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 95, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 251, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1622, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 333, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-02-20 17:48:23,080 | ERROR | django.request | Internal Server Error: /steins-gate-zero/ 
+Traceback (most recent call last):
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 246, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 333, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 557, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 557, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\core\handlers\base.py", line 254, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 506, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\asgiref\sync.py", line 561, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\core\mainpage\views.py", line 38, in steins_gate_zero_page
+    logger.info(f"Steins Gate zero page opened , user={request.user.username if request.user.is_authenticated else None}")
+                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\middleware.py", line 40, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\middleware.py", line 20, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 311, in get_user
+    user_id = _get_user_session_key(request)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 95, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 251, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1622, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 333, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\qazws\PycharmProjects\anime_netflix\.venv\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+2026-02-20 17:48:23,376 | WARNING | django.request | Not Found: /favicon.ico 
