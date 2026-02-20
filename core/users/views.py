@@ -131,15 +131,13 @@ def profile_view(request):
 @login_required
 def change_nickname(request):
     if request.method == 'POST':
-        new_nickname = request.POST.get('nickname', '').strip()
-        if new_nickname and len(new_nickname) <= 30:
-            # Только буквы, цифры, пробелы, тире, подчеркивания
-            if re.match(r'^[\w\s\-]+$', new_nickname, re.UNICODE):
-                request.user.profile.nickname = new_nickname
-                request.user.profile.save()
-                return redirect('profile')
-    return render(request, 'users/change_nickname.html',
-                 {'error': 'Invalid nickname'})
+        new_nickname = request.POST.get('nickname')
+        if new_nickname and len(new_nickname) <= 50:
+            request.user.profile.nickname = new_nickname
+            request.user.profile.save()
+            logger.debug(f"Nickname changed , user={request.user.username} new_nickname={new_nickname} ")
+            return redirect('profile')
+    return render(request, 'users/change_nickname.html')
 
 
 ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif', '.webp'}
@@ -150,24 +148,21 @@ def change_avatar(request):
     if request.method == 'POST' and request.FILES.get('avatar'):
         avatar = request.FILES['avatar']
 
-        if avatar.size > ALLOWED_EXTENSIONS:
+        if avatar.size > MAX_AVATAR_SIZE:
             return render(request, 'users/change_avatar.html',
-                          {'error': 'File too large. Max 5 MB'})
+                          {'error': 'File too large. Max 8 MB'})
 
         ext = os.path.splitext(avatar.name)[1].lower()
-        if ext not in MAX_AVATAR_SIZE:
+        if ext not in ALLOWED_EXTENSIONS:
             return render(request, 'users/change_avatar.html',
                           {'error': 'Only JPG, PNG, GIF, WEBP allowed'})
 
-        # Проверяем, что это реально изображение
-        try:
-            from PIL import Image
-            img = Image.open(avatar)
-            img.verify()
-            avatar.seek(0)  # Сброс указателя после верефи
-        except Exception:
-            return render(request, 'users/change_avatar.html',
-                          {'error': 'Invalid image file'})
+        request.user.profile.avatar = avatar
+        request.user.profile.save()
+        logger.debug(f"Avatar changed, user={request.user.username}, avatar={avatar.name}")
+        return redirect('profile')
+
+    return render(request, 'users/change_avatar.html')
 
 
 @login_required
