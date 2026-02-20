@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+
+cd project
+
 set -o errexit
 
 pip install -r requirements.txt
 
-cd project
+
 
 python manage.py collectstatic --no-input
 
