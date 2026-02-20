@@ -1,5 +1,5 @@
 databases:
-  - name: mysitedb
+  - name: mysitedb-31j5
     plan: free
     databaseName: mysite
     user: mysite
@@ -7,7 +7,7 @@ databases:
 services:
   - type: web
     plan: free
-    name: mysite
+    name: mysite-31j5
     runtime: python
     buildCommand: './build.sh'
     startCommand: 'python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker --chdir project'
