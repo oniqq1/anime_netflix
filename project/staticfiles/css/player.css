@@ -1,0 +1,8 @@
+.player {
+    display: none;
+}
+
+.player.active {
+    display: block;
+}
+

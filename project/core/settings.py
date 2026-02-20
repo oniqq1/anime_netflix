@@ -204,6 +204,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Для отладки (в деве)
 STATICFILES_DIRS = [
-    BASE_DIR / 'project' / 'static',  # путь к твоей папке со статикой
+    BASE_DIR /  'static',  # путь к твоей папке со статикой
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
