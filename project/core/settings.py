@@ -153,9 +153,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
+        default=os.getenv(
+            'DATABASE_URL',
+            'postgresql://postgres:postgres@localhost:5432/mysite'
+        ),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
@@ -194,9 +197,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+from pathlib import Path
 
-STATIC_URL = '/static/'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
