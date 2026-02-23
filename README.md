@@ -48,7 +48,7 @@ The video player is implemented on the frontend side and works as an embedded me
 
 * Django 6
 * Django Authentication System
-* SQLite (local) / PostgreSQL (production)
+* SQLite / PostgreSQL
 * ASGI support
 
 **Frontend**
