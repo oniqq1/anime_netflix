@@ -203,14 +203,14 @@ It is intended as a **portfolio project**, not a production streaming service.
 
 ## 🧠 What This Project Demonstrates
 
-✔ Understanding of Django architecture
-✔ Ability to build authentication flows
-✔ Handling of media uploads
-✔ Creating interactive UI with backend logic
-✔ Managing database connections (PostgreSQL/SQLite)
-✔ Testing backend functionality
-✔ Managing environment configuration
-✔ Structuring and deploying a real web application
+✔ Understanding of Django architecture<br>
+✔ Ability to build authentication flows<br>
+✔ Handling of media uploads<br>
+✔ Creating interactive UI with backend logic<br>
+✔ Managing database connections (PostgreSQL/SQLite)<br>
+✔ Testing backend functionality<br>
+✔ Managing environment configuration<br>
+✔ Structuring and deploying a real web application<br>
 
 ---
 
