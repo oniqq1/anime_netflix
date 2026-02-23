@@ -17,8 +17,6 @@ Unlike a real streaming service, this platform was built to showcase:
 * Media handling (avatars, files)
 * Dynamic UI with season switching
 * User interaction via comments
-* Minimal input validation to prevent basic errors
-* Ability to run on both SQLite and PostgreSQL
 
 The video player is implemented on the frontend side and works as an embedded media interface.
 
@@ -26,22 +24,20 @@ The video player is implemented on the frontend side and works as an embedded me
 
 ## ✨ Features
 
-✅ Watch **Steins;Gate** (2 seasons)  
-✅ Switch between seasons and episodes  
-✅ User registration & login system  
-✅ Email confirmation during signup  
+✅ Watch **Steins;Gate** (2 seasons)
+✅ Switch between seasons and episodes
+✅ User registration & login system
+✅ Email confirmation during signup
 ✅ Profile customization:
+
 * Change nickname (display name)
 * Upload avatar
 
-✅ Comment system for registered users  
-✅ Pagination for comments  
-✅ Media file handling with Pillow  
-✅ Environment configuration using `.env`  
-✅ Fully functional Django backend  
-✅ Basic input validation (e.g., nickname length, email format)  
-✅ Supports SQLite (default) and PostgreSQL  
-✅ Unit tests included for models and views  
+✅ Comment system for registered users
+✅ Pagination for comments
+✅ Media file handling with Pillow
+✅ Environment configuration using `.env`
+✅ Fully functional Django backend
 
 ---
 
@@ -51,7 +47,7 @@ The video player is implemented on the frontend side and works as an embedded me
 
 * Django 6
 * Django Authentication System
-* SQLite / PostgreSQL support
+* SQLite (default Django database)
 * ASGI support
 
 **Frontend**
@@ -69,7 +65,7 @@ The video player is implemented on the frontend side and works as an embedded me
 
 ## 📦 Dependencies
 
-
+```
 asgiref==3.11.1
 Django==6.0.2
 dotenv==0.9.9
@@ -77,8 +73,7 @@ pillow==12.1.0
 python-dotenv==1.2.1
 sqlparse==0.5.5
 tzdata==2025.3
-psycopg2-binary==2.9.9 # Optional, for PostgreSQL
-
+```
 
 ---
 
@@ -86,75 +81,69 @@ psycopg2-binary==2.9.9 # Optional, for PostgreSQL
 
 Clone the repository:
 
-
+```
 git clone https://github.com/oniqq1/anime_netflix.git
-
 cd anime_netflix
-
+```
 
 Create virtual environment:
 
-
+```
 python -m venv venv
-
+```
 
 Activate it:
 
 **Windows**
 
-
+```
 venv\Scripts\activate
-
+```
 
 **Mac/Linux**
 
-
+```
 source venv/bin/activate
-
+```
 
 Install dependencies:
 
-
+```
 pip install -r requirements.txt
-
+```
 
 Go to the core directory:
 
-
+```
 cd core
-
+```
 
 Run migrations:
 
-
+```
 python manage.py migrate
-
+```
 
 Start the development server:
 
-
+```
 python manage.py runserver
-
+```
 
 Open in browser:
 
-
+```
 http://127.0.0.1:8000/
-
-
-Run tests:
-
-
-python manage.py test
-
+```
 
 ---
 
 ## 🔐 Authentication Flow
 
-1. User registers an account  
-2. Confirmation email is sent  
+1. User registers an account
+2. Confirmation email is sent
 3. After confirmation, user can:
+
    * Log in
    * Upload avatar
    * Change nickname
@@ -164,31 +153,28 @@ python manage.py test
 
 ## 📁 Project Structure (Simplified)
 
-
+```
 anime_netflix/
 │
-├── core/ # Django project settings
-├── apps/ # Application logic
-├── templates/ # HTML templates
-├── static/ # CSS / JS / assets
-├── media/ # Uploaded avatars
-├── tests/ # Unit tests
-├── .env # Environment variables
+├── core/                 # Django project settings
+├── apps/                 # Application logic
+├── templates/            # HTML templates
+├── static/               # CSS / JS / assets
+├── media/                # Uploaded avatars
+├── .env                  # Environment variables
 └── manage.py
-
+```
 
 ---
-
 ## .env
 
 In main directory (anime_netflix) you need create .env and
 write here 
 
-
+```
 EMAIL_HOST_USER='your_email'
 EMAIL_HOST_PASSWORD='your_app_password'
-DATABASE_URL='postgres://user:password@localhost:5432/dbname' # Optional for PostgreSQL
-
+```
 
 After that project is ready to run
 
@@ -204,9 +190,6 @@ This project was created to demonstrate:
 * File uploads & media storage
 * Backend + frontend integration
 * Real-world application structure
-* Minimal input validation
-* Unit testing for models and views
-* Multi-database support (SQLite / PostgreSQL)
 
 It is intended as a **portfolio project**, not a production streaming service.
 
@@ -214,32 +197,28 @@ It is intended as a **portfolio project**, not a production streaming service.
 
 ## 📌 Notes
 
-* Runs locally (no deployment configured).  
-* Designed for learning and demonstration purposes.  
-* Focused on a single anime to emphasize functionality over scale.  
-* Includes basic validation to prevent invalid inputs.  
-* Unit tests ensure basic functionality works as expected.  
+* Runs locally (no deployment configured).
+* Designed for learning and demonstration purposes.
+* Focused on a single anime to emphasize functionality over scale.
 
 ---
 
 ## 🧠 What This Project Demonstrates
 
-✔ Understanding of Django architecture  
-✔ Ability to build authentication flows  
-✔ Handling of media uploads  
-✔ Creating interactive UI with backend logic  
-✔ Managing environment configuration  
-✔ Structuring a real web application  
-✔ Running tests for reliability  
-✔ Working with multiple database backends  
+✔ Understanding of Django architecture
+✔ Ability to build authentication flows
+✔ Handling of media uploads
+✔ Creating interactive UI with backend logic
+✔ Managing environment configuration
+✔ Structuring a real web application
+
 
 ---
 
 ## 👨‍💻 Author
 
-- [mailor](https://github.com/mailorq) - Frontend, Backend  
-- [oniqq](https://github.com/oniqq1) - Backend  
-
+[mailor](https://github.com/mailorq) - frontend , backend 
+[oinqq](https://github.com/oniqq1) - backend 
 ---
 
 ⭐ If you found this project interesting — feel free to explore and improve it!
