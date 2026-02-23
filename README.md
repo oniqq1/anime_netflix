@@ -150,22 +150,6 @@ http://127.0.0.1:8000/
    * Leave comments
 
 ---
-
-## 📁 Project Structure (Simplified)
-
-```
-anime_netflix/
-│
-├── core/                 # Django project settings
-├── apps/                 # Application logic
-├── templates/            # HTML templates
-├── static/               # CSS / JS / assets
-├── media/                # Uploaded avatars
-├── .env                  # Environment variables
-└── manage.py
-```
-
----
 ## .env
 
 In main directory (anime_netflix) you need create .env and
