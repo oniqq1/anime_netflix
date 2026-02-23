@@ -127,6 +127,12 @@ Create logs:
 mkdir logs
 ```
 
+Make migrations:
+
+```
+python manage.py makemigrations
+```
+
 Run migrations:
 
 ```
