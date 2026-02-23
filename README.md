@@ -29,13 +29,14 @@ The video player is implemented on the frontend side and works as an embedded me
 ✅ User registration & login system
 ✅ Email confirmation during signup
 ✅ Profile customization:
-
-* Change nickname (display name)
-* Upload avatar
-
+  * Change nickname (display name)
+  * Upload avatar
+✅ Minimal form and data validation
 ✅ Comment system for registered users
 ✅ Pagination for comments
 ✅ Media file handling with Pillow
+✅ PostgreSQL support for production
+✅ Automated tests included
 ✅ Environment configuration using `.env`
 ✅ Fully functional Django backend
 
@@ -47,7 +48,7 @@ The video player is implemented on the frontend side and works as an embedded me
 
 * Django 6
 * Django Authentication System
-* SQLite (default Django database)
+* SQLite (local) / PostgreSQL (production)
 * ASGI support
 
 **Frontend**
@@ -73,6 +74,8 @@ pillow==12.1.0
 python-dotenv==1.2.1
 sqlparse==0.5.5
 tzdata==2025.3
+bleach
+psycopg2-binary
 ```
 
 ---
@@ -118,6 +121,12 @@ Go to the core directory:
 cd core
 ```
 
+Create logs:
+
+```
+mkdir logs
+```
+
 Run migrations:
 
 ```
@@ -156,6 +165,12 @@ In main directory (anime_netflix) you need create .env and
 write here 
 
 ```
+DB_NAME='your_db_name'
+DB_USER='your_db_user'
+DB_PASSWORD='your_db_password'
+DB_HOST='your_db_host'
+DB_PORT='your_db_port'
+
 EMAIL_HOST_USER='your_email'
 EMAIL_HOST_PASSWORD='your_app_password'
 ```
@@ -180,8 +195,7 @@ It is intended as a **portfolio project**, not a production streaming service.
 ---
 
 ## 📌 Notes
-
-* Runs locally (no deployment configured).
+* The project is deployed and hosted online.
 * Designed for learning and demonstration purposes.
 * Focused on a single anime to emphasize functionality over scale.
 
@@ -193,9 +207,10 @@ It is intended as a **portfolio project**, not a production streaming service.
 ✔ Ability to build authentication flows
 ✔ Handling of media uploads
 ✔ Creating interactive UI with backend logic
+✔ Managing database connections (PostgreSQL/SQLite)
+✔ Testing backend functionality
 ✔ Managing environment configuration
-✔ Structuring a real web application
-
+✔ Structuring and deploying a real web application
 
 ---
 
