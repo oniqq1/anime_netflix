@@ -166,4 +166,3 @@ def change_avatar(request):
 @login_required
 def profile_settings(request):
     return render(request, "users/settings.html")
-

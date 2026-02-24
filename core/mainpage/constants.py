@@ -64,7 +64,7 @@ ANIME_DEFAULTS = {
     },
     "Steins;Gate: Kyoukaimenjou no Missing Link": {
         "appearing": "2015 зима",
-        "type": "Фильм, 90 мин.",
+        "type": "24 мин.",
         "genres": "Триллер, Путешествия во времени, Тайна, Психология, Романтика, Драма",
         "description": (
         "Специальный эпизод, включенный в Blu-ray издание Steins;Gate Complete. "
