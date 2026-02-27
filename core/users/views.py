@@ -38,9 +38,11 @@ def register_view(request):
 
 
 def email_verification_view(request):
+    # Если нет данных регистрации -- нечего тут делать
     if not request.session.get('registration_data'):
         return redirect('register')
 
+    # Если попытки исчерпаны блок доступа
     attempts = request.session.get('verification_attempts', 0)
     if attempts >= 5:
         request.session.pop('verification_code', None)
@@ -166,3 +168,4 @@ def change_avatar(request):
 @login_required
 def profile_settings(request):
     return render(request, "users/settings.html")
+

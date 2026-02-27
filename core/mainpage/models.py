@@ -25,3 +25,75 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.anime.name}"
+
+    @property
+    def likes_count(self):
+        return self.comment_likes.filter(is_like=True).count()
+
+    @property
+    def dislikes_count(self):
+        return self.comment_likes.filter(is_like=False).count()
+
+    @property
+    def rating(self):
+        return self.likes_count - self.dislikes_count
+
+
+class CommentLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_likes")
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="comment_likes")
+    is_like = models.BooleanField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'comment')
+
+    def __str__(self):
+        return f"{self.user.username} - {'Like' if self.is_like else 'Dislike'} - {self.comment.id}"
+
+
+class AnimeRating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="anime_ratings")
+    anime = models.ForeignKey(AnimeDescription, on_delete=models.CASCADE, related_name="ratings")
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'anime')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.anime.name} - {self.rating}"
+
+
+class ViewHistory(models.Model):
+    anime = models.ForeignKey(AnimeDescription, on_delete=models.CASCADE, related_name="views")
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="view_history")
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    viewed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-viewed_at"]
+
+    def __str__(self):
+        return f"{self.anime.name} - {self.viewed_at}"
+
+
+class WatchProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="watch_progress")
+    anime = models.ForeignKey(AnimeDescription, on_delete=models.CASCADE, related_name="watch_progress")
+    current_time = models.FloatField(default=0)
+    duration = models.FloatField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'anime')
+        ordering = ["-updated_at"]
+
+    def __str__(self):
+        return f"{self.user.username} - {self.anime.name} - {self.current_time}s"
+
+    @property
+    def progress_percentage(self):
+        if self.duration > 0:
+            return (self.current_time / self.duration) * 100
+        return 0
