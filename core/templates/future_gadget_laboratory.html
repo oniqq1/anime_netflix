@@ -83,13 +83,13 @@
     <h3 class="text-2xl font-bold mb-6 text-zinc-100">Популярные серии</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {% for anime in popular_anime %}
-      <div class="bg-zinc-900 rounded-lg p-4 hover:bg-zinc-800 transition">
+      <a href="{{ anime.get_absolute_url }}" class="block bg-zinc-900 rounded-lg p-4 hover:bg-zinc-800 transition">
         <h4 class="text-lg font-semibold text-zinc-200 mb-2">{{ anime.name }}</h4>
         <div class="flex items-center justify-between text-sm">
           <span class="text-zinc-400">Просмотров:</span>
           <span class="text-amber-400 font-mono">{{ anime.views_count }}</span>
         </div>
-      </div>
+      </a>
       {% endfor %}
     </div>
   </div>

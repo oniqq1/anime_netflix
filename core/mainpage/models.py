@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class AnimeDescription(models.Model):
@@ -9,6 +10,18 @@ class AnimeDescription(models.Model):
     genres = models.CharField(max_length=500)
     description = models.TextField()
     poster = models.ImageField(upload_to="posters/", blank=True, default="")
+    URL_MAP = {
+        "Steins;Gate": "steins_gate_page",
+        "Steins;Gate 0": "steins_gate_zero_page",
+        "Steins;Gate: Load Region of Deja Vu": "steins_gate_load_region",
+        "Steins;Gate: Kyoukaimenjou no Missing Link": "steins_gate_missing_link",
+    }
+
+    def get_absolute_url(self):
+        url_name = self.URL_MAP.get(self.name)
+        if url_name:
+            return reverse(url_name)
+        return "/"
 
     def __str__(self):
         return self.name
