@@ -86,4 +86,3 @@ ANIME_QUESTIONS = [
     {"label": "Раундеры", "url": "https://steins-gate.fandom.com/wiki/Rounders"},
     {"label": "Ди-мейлы", "url": "https://steins-gate.fandom.com/wiki/D-Mail"},
 ]
-
